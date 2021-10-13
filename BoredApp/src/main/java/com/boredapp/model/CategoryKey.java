@@ -6,14 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @SuppressWarnings("serial")
-public class MyKey implements Serializable{
+public class CategoryKey implements Serializable{
 
 	/**
 	 * 
 	 */
-
-	
-
 	private String activity;
 	
 	private String category;

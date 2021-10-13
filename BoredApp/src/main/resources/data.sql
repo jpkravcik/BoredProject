@@ -33,13 +33,13 @@ insert into activity(name,description,cost) values( 'niagara falls tour' ,'a bre
 insert into activity(name,description,cost) values( 'visit coney island' ,'another fun thing to do in nyc with kids' ,69.0);
 
 
-
 insert into category(name) values('MUSIC');
 insert into category(name) values('RESTAURANTS');
 insert into category(name) values('SITESEEING');
 insert into category(name) values('SHOPPING');
 insert into category(name) values('EDUCATION');
 insert into category(name) values('OUTDOORS');
+
 
 insert into incategory(activity_name,category_name ) values( 'central park' ,'OUTDOORS');
 insert into incategory(activity_name,category_name ) values( 'central park' ,'SITESEEING');

@@ -9,9 +9,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+
 @Entity
-//@Table(name="incategory",uniqueConstraints= {@UniqueConstraint(columnNames = { "activity_name", "category_name" })})
-@IdClass(MyKey.class)
+
+
+@IdClass(CategoryKey.class)
 public class Incategory {
 
 	@Id
@@ -23,6 +29,8 @@ public class Incategory {
 	@ManyToOne
     @JoinColumn(name="category_name", nullable=false)
 	private Category category;
+	
+	
 	
 	
 }
