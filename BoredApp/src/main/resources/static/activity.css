@@ -1,0 +1,73 @@
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: lightblue;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: black;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.logo{
+  width: 200px;
+  height: 120px;
+}
+
+.plus{
+  width: 80px;
+  height: 80px;
+}
+
+.star {
+  width: 80px;
+  height: 80px;
+}
+
+.user{
+  width: 80px;
+  height: 80px;  
+}
+
+.act{
+  width: 80px;
+  height: 80px;
+}
+
+.space{
+  margin-top: 300px;
+}
+
+/* Style the table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 50%;
+  border: 1px solid #ddd;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Style table headers and table data */
+th, td {
+  text-align: center;
+  padding: 16px;
+}
+
+th{
+  background-color: lightblue
+}
+
+th:first-child, td:first-child {
+  text-align: center;
+}
+
+/* Zebra-striped table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
