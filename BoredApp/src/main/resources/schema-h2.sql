@@ -22,9 +22,9 @@ CREATE TABLE activity(
 	city_id BIGINT UNSIGNED,
 	cost DOUBLE,
 	primary key(id),
-	unique (name),
+	unique (name)
 	
-	foreign key(city_id) references city(id) ON DELETE CASCADE
+	
 );
 
 
