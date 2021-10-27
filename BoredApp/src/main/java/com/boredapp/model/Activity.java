@@ -23,7 +23,7 @@ import lombok.ToString.Exclude;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="activity")
+
 public class Activity {
 	@lombok.EqualsAndHashCode.Exclude
 	@Id

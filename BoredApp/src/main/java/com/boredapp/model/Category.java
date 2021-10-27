@@ -20,7 +20,6 @@ import lombok.ToString.Exclude;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="category")
 public class Category {
 	@lombok.EqualsAndHashCode.Exclude
 	@Id
