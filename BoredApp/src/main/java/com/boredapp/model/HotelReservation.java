@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name="hotel_reservation")
 public class HotelReservation {
@@ -32,36 +35,6 @@ public class HotelReservation {
 	
 	
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Hotel getHotel() {
-		return hotel;
-	}
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
 	
 	
 	

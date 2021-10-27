@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Brands</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    
+    <p th:text="'Hi, '+${user.firstName} +' lets begin !'"></p>
+    <p>Do you want to plan your own trip ? click the link below</p>
+    <a th:href="@{/customtrip/{id} (id=${user.id})}">Plan your trip</a>
+    <br>
+    <p>Lets Plan for you instead ! click my link below </p>
+    <a th:href="@{/automatedtrip/{id} (id=${user.id})}">Let plan for you !</a>
+</body>
+</html>

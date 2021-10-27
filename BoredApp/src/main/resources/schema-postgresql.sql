@@ -22,9 +22,9 @@ CREATE TABLE activity(
 	description VARCHAR(150),
 	city_id INT,
 	cost DECIMAL(10,3),
-	unique (name),
+	unique (name)
 	
-	foreign key(city_id) references city(id) ON DELETE CASCADE
+	
 );
 
 

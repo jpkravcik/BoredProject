@@ -1,3 +1,7 @@
+insert into city(name) values('chicago');
+insert into city(name) values('newyork');
+insert into city(name) values('losangelos');
+
 insert into activity(name,description,cost) values( 'central park' ,'one of the top places to visit in new york city' ,81.0);
 insert into activity(name,description,cost) values( 'times square' ,'the best place to visit in nyc at night' ,67.0);
 insert into activity(name,description,cost) values( 'empire state building' ,'one of the most famous places in new york city' ,46.0);

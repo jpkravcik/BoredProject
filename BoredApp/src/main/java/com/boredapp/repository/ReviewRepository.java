@@ -1,9 +1,10 @@
 package com.boredapp.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.repository.CrudRepository;
 
 import com.boredapp.model.Review;
 
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
+public interface ReviewRepository extends CrudRepository<Review, Integer> {
 
 }

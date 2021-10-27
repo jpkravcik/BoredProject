@@ -13,10 +13,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
+@Data
+@NoArgsConstructor
 @Entity
-
-
 @IdClass(CategoryKey.class)
 public class Incategory {
 

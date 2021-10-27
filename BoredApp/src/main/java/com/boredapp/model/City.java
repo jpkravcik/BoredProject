@@ -10,42 +10,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import lombok.*;
+import lombok.EqualsAndHashCode.Exclude;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class City {
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.IDENTITY)
-	 private Integer id;
-	 @Column(unique=true)
-	 private String name;
-	 
-	 @OneToMany(mappedBy="city",cascade=CascadeType.PERSIST)
-	 List<Hotel> Hotel=new ArrayList<>();
+	@lombok.ToString.Exclude
+	@Exclude
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
+	@Column(unique = true)
+	private String name;
+	
+	@lombok.ToString.Exclude
+	@Exclude
+	@OneToMany(mappedBy="city",cascade=CascadeType.PERSIST)
+	 List<Hotel> hotel=new ArrayList<>();
 
-	public String getName() {
-		return name;
-	}
+	/*@lombok.ToString.Exclude
+	@Exclude
+	@OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+	List<Activity> activity=new ArrayList<>();*/
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public List<Hotel> getHotel() {
-		return Hotel;
-	}
 
-	public void setHotel(List<Hotel> hotel) {
-		Hotel = hotel;
-	}
-	 
+	
+
+	
+	
 	 
 	 
 	 

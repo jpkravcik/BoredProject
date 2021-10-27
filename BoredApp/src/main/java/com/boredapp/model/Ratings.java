@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name="rating")
 public class Ratings {
@@ -28,47 +31,7 @@ public class Ratings {
 	private Integer rating;
 
 
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public Activity getActivity() {
-		return activity;
-	}
-
-
-	public void setActivity(Activity activity) {
-		this.activity = activity;
-	}
-
-
 	
-
-
-	public Integer getRating() {
-		return rating;
-	}
-
-
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	
 
 

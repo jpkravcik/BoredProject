@@ -6,7 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name="review")
 public class Review {
@@ -27,44 +30,7 @@ public class Review {
 	private String review;
 
 
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public Activity getActivity() {
-		return activity;
-	}
-
-
-	public void setActivity(Activity activity) {
-		this.activity = activity;
-	}
-
-
-	public String getReview() {
-		return review;
-	}
-
-
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	
 	
 	

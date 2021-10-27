@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 
 public class BookingKey implements Serializable {
-	private String user;
-	private String activity;
+	private User user;
+	private Activity activity;
 	
 	
 

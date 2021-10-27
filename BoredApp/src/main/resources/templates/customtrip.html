@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Brands</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #0446aa;
+      color: white;
+    }
+    </style>
+</head>
+    <body>
+        <form th:action="@{/bookedtrip/{id} (id=${userId})}"  th:object="${bookingDto}" method="post" style="max-width: 600px; margin: 0 auto;">
+            <table id="customers">
+                <thead>
+                    <tr>
+                        <th> Activity </th>
+                        <th> Description </th>
+                        <th>Cost</th>
+                        <th>Select </th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    <tr th:each="activity : ${allactivities}">
+                        <td th:text="${activity.name}"></td>
+            			<td th:text="${activity.description}"></td>
+            			<td th:text="${activity.cost}"></td>
+            			<td ><input type="checkbox" th:text="${activity.name}" th:value="${activity.id}" th:field ="*{activities}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <div>
+                <button type="submit" class="btn- btn-primary">Save</button>
+            </div>
+        </form>
+    </body>
+</html>

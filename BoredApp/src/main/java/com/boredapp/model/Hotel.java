@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Hotel {
 	 @Id
@@ -22,7 +25,7 @@ public class Hotel {
 	 private Double cost;
 	
 	@ManyToOne
-	@JoinColumn(name="city_id", nullable=false)
+	@JoinColumn(name="city_name", nullable=false)
 	private City city;
 
 	
@@ -30,46 +33,7 @@ public class Hotel {
 	List<HotelReservation> reviews;
 	
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Double getCost() {
-		return cost;
-	}
-
-	public void setCost(Double cost) {
-		this.cost = cost;
-	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public List<HotelReservation> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<HotelReservation> reviews) {
-		this.reviews = reviews;
-	}
-	 
+	
 	
 	
 	
