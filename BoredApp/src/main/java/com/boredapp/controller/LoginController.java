@@ -4,9 +4,7 @@ package com.boredapp.controller;
 
 import com.boredapp.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 
-import com.boredapp.model.City;
 import com.boredapp.model.User;
 import com.boredapp.repository.CityRepository;
 
