@@ -1,0 +1,48 @@
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  text-align: left;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=email] {
+  width: 100%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  padding: 3px;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=email] :focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+#myBtn{
+    background-color: transparent;
+    border: 0px;
+    text-align: right;
+    padding: 0px;
+    margin-right: 0px;
+    color: blue;
+}
+
+
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
