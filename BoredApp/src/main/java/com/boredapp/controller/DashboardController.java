@@ -12,7 +12,7 @@ import com.boredapp.model.Incategory;
 import com.boredapp.model.User;
 import com.boredapp.repository.ActivityRepository;
 import com.boredapp.repository.IncategoryRepository;
-
+import com.boredapp.repository.UserRepository;
 import com.boredapp.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @RequestMapping("userhomepage")
+@SessionAttributes({"user"})
 @Controller
 public class DashboardController {
     
@@ -34,27 +36,31 @@ public class DashboardController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    IncategoryRepository incategoryRepository;
+
+    
     @GetMapping("/cost/{value}")
-    public ModelAndView filterByCost(@PathVariable (name="value") Integer value){
+    public ModelAndView filterByCost(@PathVariable (name="value") Integer value, Model model){
         ModelAndView mv = new ModelAndView("userhomepage");
        ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
        int index = (int)(Math.random() * activities.size());
         mv.addObject("randomActivity", activities.get(index));
 
     activities.removeIf(activity->(activity.getCost()>value));
-    System.out.println(activities);
-       mv.addObject("user", new User());
-       mv.addObject("activities", activities);
+    User user = (User) model.asMap().get("user");
+    mv.addObject("user", user);      
+    mv.addObject("activities", activities);
         mv.addObject("value", value);
        return mv;
 
     }
-
     
     @GetMapping
-    public ModelAndView viewMain() {
+    public ModelAndView viewMain(Model model) {
         ModelAndView mv = new ModelAndView("userhomepage");
-        mv.addObject("user", new User());
+        User user = (User) model.asMap().get("user");
+        mv.addObject("user", user);
         mv.addObject("value", 1000);
         ArrayList<Activity> activities = (ArrayList<Activity>) activityRepository.findAll();
         mv.addObject("activities", activities);
@@ -66,7 +72,7 @@ public class DashboardController {
 
     @PostMapping
     public ModelAndView processRegister(User user) {
-        ModelAndView mv = new ModelAndView("userhomepage");
+       ModelAndView mv = new ModelAndView("userhomepage");
        if(user.getPassword().equals(user.getRepeatPassword())){
         try {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
