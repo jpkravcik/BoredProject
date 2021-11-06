@@ -103,13 +103,28 @@
    <!--
     Select Filters 
   -->
- 
-  <p>Filter by Cost</p>
-  <a class="btn btn-primary float_right" th:href="@{/userhomepage/cost/{value} (value=0)}">Free</a>
-  <a class="btn btn-primary float_right" th:href="@{/userhomepage/cost/{value} (value=10)}"><$10</a>
-  <a class="btn btn-primary float_right" th:href="@{/userhomepage/cost/{value} (value=50)}"><$50</a>
-  <a class="btn btn-primary float_right" th:href="@{/userhomepage/cost/{value} (value=1000)}">All</a>
-</span>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+  <a class="btn btn-outline-dark float_right" id="sightseeing" th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost}, category='SITESEEING')}">SIGHTSEEING</a>
+  <a class="btn btn-outline-dark float_right" id="outdoors" th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='OUTDOORS')}">OUTDOORS</a>
+  <a class="btn btn-outline-dark float_right" id="education"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='EDUCATION')}">EDUCATION</a>
+  <a class="btn btn-outline-dark float_right" id="music"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='MUSIC')}">MUSIC</a>
+  <a class="btn btn-outline-dark float_right" id="all"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='ALL')}">ALL</a>
+
+</div>
+
+
+<br><br>
+  
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+  <a class="btn btn-outline-dark float_right" id="0"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=0, category=${category})}">Free</a>
+  <a class="btn btn-outline-dark float_right" id="10"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=10, category=${category})}"><$10</a>
+  <a class="btn btn-outline-dark float_right" id="50"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=50, category=${category})}"><$50</a>
+  <a class="btn btn-outline-dark float_right" id="1000"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=1000, category=${category})}">All</a>
+
+    </div>
   <br>
   <br>
 
@@ -121,15 +136,15 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Activity</th>
-        <th scope="col">Description</th>
+        <th scope="col">Category</th>
         <th scope="col">Cost</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="activity : ${activities}">
-        <td th:text="${activity.id}"></td>
+        <td th:text="${activity.activityId}"></td>
         <td th:text="${activity.name}"></td>
-        <td th:text="${activity.description}"></td>
+        <td th:text="${activity.category}"></td>
         <td th:text="${activity.cost}"></td>
     </tr>
     </tbody>
@@ -144,7 +159,56 @@ $(document).ready(function() {
         "pageLength": 10
     } );
 } );
+
+
+
 </script>
+
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+      
+  
+      var cost = /*[[${cost}]]*/ 0;
+      var category = /*[[${category}]]*/ "ALL";
+  
+     switch(category){
+       case 'ALL':
+       $('#all').css('background', '#93c7ea');
+       break;
+       case 'SITESEEING':
+       $('#sightseeing').css('background', '#93c7ea');
+       break;
+       case 'OUTDOORS':
+       $('#outdoors').css('background', '#93c7ea');
+       break;
+       case 'EDUCATION':
+       $('#education').css('background', '#93c7ea');
+       break;
+       case 'MUSIC':
+       $('#music').css('background', '#93c7ea');
+       break;
+     }
+
+     switch(cost){
+       case 0:
+       $('#0').css('background', '#93c7ea');
+       break;
+       case 10:
+       $('#10').css('background', '#93c7ea');
+       break;
+       case 50:
+       $('#50').css('background', '#93c7ea');
+       break;
+       case 1000:
+       $('#1000').css('background', '#93c7ea');
+       break;
+    
+
+     }
+
+  /*]]>*/
+  </script>
 
 <!--
 $('#costValue').on('change', function() {
