@@ -40,7 +40,6 @@ create table userdata(
 );
 
 
-
 create table category(
 	id serial PRIMARY KEY,
 	name VARCHAR(150),

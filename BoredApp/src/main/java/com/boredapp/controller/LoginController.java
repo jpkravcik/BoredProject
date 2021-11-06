@@ -29,7 +29,7 @@ public class LoginController {
     CityRepository cityRepository;
 
 
-
+/*
     @GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("newUser", new User());
@@ -65,12 +65,12 @@ public class LoginController {
             return "login";
         }
 		
-        /*Iterable<City> cities=cityRepository.findAll();
-        model.addAttribute("cities", cities);*/
+ 
 
         
         
 		return "userhomepage";
 		
 	}
+    */
 }

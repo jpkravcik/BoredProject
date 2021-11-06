@@ -24,30 +24,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("userhomepage")
 @Controller
-@RequestMapping("")
-public class HomePageController {
-    @Autowired
-    UserService userService;
-
+public class DashboardController {
+    
     @Autowired
     ActivityRepository activityRepository;
 
     @Autowired
-    IncategoryRepository incategoryRepository;
-    
-    @GetMapping
-    public ModelAndView viewHomePage() {
-        ModelAndView mv = new ModelAndView("welcome");
-        mv.addObject("user", new User());
-        return mv;
-    }
+    UserService userService;
 
-    /*
-    @GetMapping("/userhomepage/cost/{value}")
+    @GetMapping("/cost/{value}")
     public ModelAndView filterByCost(@PathVariable (name="value") Integer value){
         ModelAndView mv = new ModelAndView("userhomepage");
        ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
+       int index = (int)(Math.random() * activities.size());
+        mv.addObject("randomActivity", activities.get(index));
 
     activities.removeIf(activity->(activity.getCost()>value));
     System.out.println(activities);
@@ -59,7 +51,7 @@ public class HomePageController {
     }
 
     
-    @GetMapping("/userhomepage")
+    @GetMapping
     public ModelAndView viewMain() {
         ModelAndView mv = new ModelAndView("userhomepage");
         mv.addObject("user", new User());
@@ -72,7 +64,7 @@ public class HomePageController {
     }
     
 
-    @PostMapping("/userhomepage")
+    @PostMapping
     public ModelAndView processRegister(User user) {
         ModelAndView mv = new ModelAndView("userhomepage");
        if(user.getPassword().equals(user.getRepeatPassword())){
@@ -88,7 +80,14 @@ public class HomePageController {
         }else{
             return new ModelAndView("welcome");
         }
+        ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
+       int index = (int)(Math.random() * activities.size());
+        mv.addObject("randomActivity", activities.get(index));
+        mv.addObject("value", 1000);
+        mv.addObject("activities",activityRepository.findAll());
+
         return mv;
     }
-    */
+
+ 
 }
