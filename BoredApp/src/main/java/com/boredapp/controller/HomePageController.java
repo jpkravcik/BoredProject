@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.boredapp.model.Activity;
 import com.boredapp.model.Incategory;
 import com.boredapp.model.User;
+import com.boredapp.repository.ActivityId_UserIdRepository;
 import com.boredapp.repository.ActivityRepository;
 import com.boredapp.repository.IncategoryRepository;
 
@@ -36,11 +37,18 @@ public class HomePageController {
 
     @Autowired
     IncategoryRepository incategoryRepository;
+
+    @Autowired
+    ActivityId_UserIdRepository activityId_userIdRepository;
     
     @GetMapping
     public ModelAndView viewHomePage() {
         ModelAndView mv = new ModelAndView("welcome");
         mv.addObject("user", new User());
+
+        System.out.println("Hello" + activityId_userIdRepository.findAll());
+
+
         return mv;
     }
 

@@ -16,52 +16,13 @@
   <link rel="stylesheet" type="text/css" href="css/userhomepage.css">
   
   <title>Dashboard</title>
-
-
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/userhomepage">
-        <img src="/images/bored.png" width="30" height="30" class="d-inline-block align-top" alt="bored_img">
-        BORED
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Home</a>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Favorites</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">My Activities</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Fun Stuff
-            </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" th:href="@{/plantrip/{id} (id=${user.id})}">Plan Trip</a></li>
-            <li><a class="dropdown-item" href="#">Tickets</a></li>
-          </ul>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Profile</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-
-
+ 
+  <!--
+    Navigation Bar 
+  -->
+    <div th:insert="navbar :: navbar">  </div>
 
 <div class="mainContainer">
   <!--
@@ -119,7 +80,7 @@
   
     <div class="btn-group" role="group" aria-label="Basic example">
 
-  <a class="btn btn-outline-dark float_right" id="0"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=0, category=${category})}">Free</a>
+  <a class="btn btn-outline-dark float_right" id="0" th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=0, category=${category})}">Free</a>
   <a class="btn btn-outline-dark float_right" id="10"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=10, category=${category})}"><$10</a>
   <a class="btn btn-outline-dark float_right" id="50"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=50, category=${category})}"><$50</a>
   <a class="btn btn-outline-dark float_right" id="1000"th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=1000, category=${category})}">All</a>
@@ -138,6 +99,7 @@
         <th scope="col">Activity</th>
         <th scope="col">Category</th>
         <th scope="col">Cost</th>
+        <th scope="col">Add</th>
       </tr>
     </thead>
     <tbody>
@@ -146,6 +108,12 @@
         <td th:text="${activity.name}"></td>
         <td th:text="${activity.category}"></td>
         <td th:text="${activity.cost}"></td>
+        <td>
+          <form action="#" th:action="@{/userhomepage/{activityId} (activityId=${activity.activityId})}" th:object="${activity.activityId}" method="post">	
+            <input type="hidden" name="name" value="value" /> 
+          <input type="submit" class="btn btn-outline-primary float_right" value="+">
+          </form>
+        </td>
     </tr>
     </tbody>
   </table>
@@ -153,6 +121,8 @@
 </div>
 
 <script>
+
+
 $(document).ready(function() {
     $('#activitiesTable').DataTable( {
         responsive: true,
@@ -174,34 +144,34 @@ $(document).ready(function() {
   
      switch(category){
        case 'ALL':
-       $('#all').css('background', '#93c7ea');
+       $('#all').css('background', '#0c6efd');
        break;
        case 'SITESEEING':
-       $('#sightseeing').css('background', '#93c7ea');
+       $('#sightseeing').css('background', '#0c6efd');
        break;
        case 'OUTDOORS':
-       $('#outdoors').css('background', '#93c7ea');
+       $('#outdoors').css('background', '#0c6efd');
        break;
        case 'EDUCATION':
-       $('#education').css('background', '#93c7ea');
+       $('#education').css('background', '#0c6efd');
        break;
        case 'MUSIC':
-       $('#music').css('background', '#93c7ea');
+       $('#music').css('background', '#0c6efd');
        break;
      }
 
      switch(cost){
        case 0:
-       $('#0').css('background', '#93c7ea');
+       $('#0').css('background', '#0c6efd');
        break;
        case 10:
-       $('#10').css('background', '#93c7ea');
+       $('#10').css('background', '#0c6efd');
        break;
        case 50:
-       $('#50').css('background', '#93c7ea');
+       $('#50').css('background', '#0c6efd');
        break;
        case 1000:
-       $('#1000').css('background', '#93c7ea');
+       $('#1000').css('background', '#0c6efd');
        break;
     
 

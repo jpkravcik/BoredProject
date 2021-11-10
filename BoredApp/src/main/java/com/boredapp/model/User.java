@@ -41,7 +41,7 @@ public class User {
     
 	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
 	List<Review> review=new ArrayList<>();
-	
+
 	
 	@Exclude
 	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)

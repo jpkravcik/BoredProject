@@ -90,3 +90,5 @@ insert into incategory(activity_name,category_name ) values( 'eat at little ital
 insert into incategory(activity_name,category_name ) values( 'eat at little italy' ,'SITESEEING');
 insert into incategory(activity_name,category_name ) values( 'niagara falls tour' ,'SITESEEING');
 insert into incategory(activity_name,category_name ) values( 'visit coney island' ,'SITESEEING');
+
+

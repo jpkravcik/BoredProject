@@ -9,6 +9,13 @@ DROP table if exists category;
 DROP table if exists Activity;
 DROP table if exists userdata;
 DROP table if exists city;
+DROP table if exists activityid_userid;
+
+create table activityid_userid(
+	id serial PRIMARY KEY,
+	activityid int,
+	userid int
+);
 
 create table city(
 	id serial PRIMARY KEY,
@@ -67,7 +74,6 @@ create table review(
 	foreign key(user_id) references userdata(id) ON DELETE CASCADE,
 	foreign key(activity_id) references activity(id) ON DELETE CASCADE
 );
-
 
 
 

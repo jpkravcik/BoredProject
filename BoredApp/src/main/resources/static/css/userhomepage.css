@@ -25,6 +25,10 @@
   left:0;
 }
 
+td a {
+  display:block;
+  width:100%;
+}
 
 
 

@@ -8,10 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 
 import com.boredapp.model.Activity;
+import com.boredapp.model.ActivityId_UserId;
 import com.boredapp.model.ActivityInCategory;
 import com.boredapp.model.Category;
 import com.boredapp.model.Incategory;
+import com.boredapp.model.SessionData;
 import com.boredapp.model.User;
+import com.boredapp.repository.ActivityId_UserIdRepository;
 import com.boredapp.repository.ActivityRepository;
 import com.boredapp.repository.CategoryRepository;
 import com.boredapp.repository.IncategoryRepository;
@@ -45,6 +48,9 @@ public class DashboardController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    ActivityId_UserIdRepository activityId_userRepository;
+
 
 
     @GetMapping("/cost/{cost}/category/{category}")
@@ -71,49 +77,6 @@ public class DashboardController {
     }
 
 
-/*
-    
-    @GetMapping("/cost/{value}")
-    public ModelAndView filterByCost(@PathVariable (name="value") Integer value, Model model){
-       ModelAndView mv = new ModelAndView("userhomepage");
-       ArrayList<Activity> activities= (ArrayList<Activity>) activityRepository.findAll();
-
-       int index = (int)(Math.random() * activities.size());
-    mv.addObject("randomActivity", activities.get(index));
-
-    ArrayList<ActivityInCategory> activityInCategories = initializeActivityInCategory();
-    activityInCategories.removeIf(activity->(activity.getCost()>value));
-    User user = (User) model.asMap().get("user");
-    mv.addObject("user", user);      
-    mv.addObject("activities", activityInCategories);
-    
-        mv.addObject("value", value);
-       return mv;
-
-    }
-
-
-    @GetMapping("/category/{value}")
-    public ModelAndView filterByCategory(@PathVariable (name="value") String value, Model model){
-       ModelAndView mv = new ModelAndView("userhomepage");
-       ArrayList<Activity> activities= (ArrayList<Activity>) activityRepository.findAll();
-
-       int index = (int)(Math.random() * activities.size());
-    mv.addObject("randomActivity", activities.get(index));
-
-    ArrayList<ActivityInCategory> activityInCategories = initializeActivityInCategory();
-    if(!value.equals("ALL")){
-        activityInCategories.removeIf(activity->(!activity.getCategory().equals(value)));
-    }
-    User user = (User) model.asMap().get("user");
-    mv.addObject("user", user);      
-    mv.addObject("activities", activityInCategories);
-    
-        mv.addObject("value", value);
-       return mv;
-
-    }
-    */
     
     @GetMapping
     public ModelAndView viewMain(Model model) {
@@ -121,6 +84,8 @@ public class DashboardController {
         User user = (User) model.asMap().get("user");
         if(user==null){
             user = new User();
+            user.setFirstName("Marija");
+            user.setId(100);
         }
 
         mv.addObject("cost", 1000);
@@ -137,6 +102,17 @@ public class DashboardController {
     }
     
 
+    @PostMapping("/{activityId}")
+    public String addActivity(@PathVariable (name="activityId") Integer activityId, Model model){
+        User user = (User) model.asMap().get("user");
+        ArrayList<ActivityId_UserId> activity_user = (ArrayList<ActivityId_UserId>) activityId_userRepository.findAll();
+        ActivityId_UserId actUser = new ActivityId_UserId();
+        actUser.setUserid(user.getId());
+        actUser.setActivityid(activityId);
+        activityId_userRepository.save(actUser);
+
+       return "redirect:/userhomepage";
+    }
 
     //Initialize session attributes here:
     
@@ -164,7 +140,6 @@ public class DashboardController {
         mv.addObject("category", "ALL");
        int index = (int)(Math.random() * activities.size());
         mv.addObject("randomActivity", activities.get(index));
-        mv.addObject("value", 1000);
 
         return mv;
     }
