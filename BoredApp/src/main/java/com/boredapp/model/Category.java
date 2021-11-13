@@ -8,18 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+
 import lombok.ToString.Exclude;
 
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name="category")
 public class Category {
 	@lombok.EqualsAndHashCode.Exclude
 	@Id

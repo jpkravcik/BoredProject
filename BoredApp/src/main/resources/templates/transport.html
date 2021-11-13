@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration Success</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+    
+    <tr th:each="transport: ${transports}">
+        <td th:text="${transport.name}" />
+        <br>
+        
+        <td th:text="${transport.transportDescription.description}" />
+        <br>
+        <br>
+        <br>
+    </tr>
+    
+</body>
+</html>

@@ -25,7 +25,7 @@ public class Hotel {
 	 private Double cost;
 	
 	@ManyToOne
-	@JoinColumn(name="city_name", nullable=false)
+	@JoinColumn(name="city_name", nullable=true)
 	private City city;
 
 	

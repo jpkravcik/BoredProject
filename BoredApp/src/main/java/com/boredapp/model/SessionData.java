@@ -1,8 +1,8 @@
 package com.boredapp.model;
 import java.util.ArrayList;
-import com.boredapp.repository.ActivityRepository;
-import com.boredapp.repository.CategoryRepository;
-import com.boredapp.repository.IncategoryRepository;
+import com.boredapp.repository.*;
+import com.boredapp.model.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 

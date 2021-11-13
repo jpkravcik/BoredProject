@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class = "topnav">
+    <img src="/images/bored.png" class="logo">
+</div>
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" href="/css/leavereview.css" />
+</head>
+
+<body>
+    <title>Registration Success</title>
+    <p th:text="'Hi, '+${user.firstName} +' Hope you had a good time ! Tell us how it went'"></p>
+    <p th:text="'at ' +${activity.name} "></p>
+
+    <div class="space"></div>
+
+
+    <form th:action="@{/savereview}" th:object="${reviewDto}" method="post" style="max-width: 600px; margin: 0 auto;">
+		
+        
+        <textarea th:field=*{review} placeholder="Leave your review" rows="8" cols="80">
+
+        </textarea>
+
+
+        <ul>
+            <li th:each="star : ${stars}">
+                <p th:text="${star} +' star'"></p>
+              <input type="radio" th:field="*{rating}" th:value=${star}/>
+              
+            </li>
+          </ul>
+        <div>
+            <button type="submit" class="button">Save</button>
+        </div>
+	</form>
+
+    
+    
+</body>
+</html>

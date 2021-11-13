@@ -5,21 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-import com.boredapp.model.Activity;
-import com.boredapp.model.ActivityId_UserId;
-import com.boredapp.model.ActivityInCategory;
-import com.boredapp.model.Category;
-import com.boredapp.model.Incategory;
-import com.boredapp.model.SessionData;
-import com.boredapp.model.User;
-import com.boredapp.repository.ActivityId_UserIdRepository;
-import com.boredapp.repository.ActivityRepository;
-import com.boredapp.repository.CategoryRepository;
-import com.boredapp.repository.IncategoryRepository;
-import com.boredapp.repository.UserRepository;
-import com.boredapp.service.UserService;
+import com.boredapp.model.*;
+import com.boredapp.nosql.*;
+import com.boredapp.repository.*;
+import com.boredapp.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import java.util.*;
 
 @RequestMapping("userhomepage")
 @SessionAttributes({"user", "category", "cost"})
@@ -78,7 +70,7 @@ public class DashboardController {
 
 
     
-    @GetMapping
+    /*@GetMapping
     public ModelAndView viewMain(Model model) {
         ModelAndView mv = new ModelAndView("userhomepage");
         User user = (User) model.asMap().get("user");
@@ -99,24 +91,33 @@ public class DashboardController {
         int index = (int)(Math.random() * activities.size());
         mv.addObject("randomActivity", activities.get(index));
         return mv;
-    }
-    
+    }*/
 
     @PostMapping("/{activityId}")
     public String addActivity(@PathVariable (name="activityId") Integer activityId, Model model){
         User user = (User) model.asMap().get("user");
         ArrayList<ActivityId_UserId> activity_user = (ArrayList<ActivityId_UserId>) activityId_userRepository.findAll();
         ActivityId_UserId actUser = new ActivityId_UserId();
-        actUser.setUserid(user.getId());
-        actUser.setActivityid(activityId);
-        activityId_userRepository.save(actUser);
+        Optional<ActivityId_UserId> alreadyExist=activityId_userRepository.checkExist(user.getId(),activityId);
 
-       return "redirect:/userhomepage";
+        
+        if(!alreadyExist.isPresent()){
+            actUser.setUserid(user.getId());
+            actUser.setActivityid(activityId);
+            activityId_userRepository.save(actUser);
+        }
+        
+
+       return "redirect:/gohome";
     }
 
+
+   
+
+   
     //Initialize session attributes here:
     
-    @PostMapping
+    /*@PostMapping
     public ModelAndView processRegister(User user) {
        ModelAndView mv = new ModelAndView("userhomepage");
        if(user.getPassword().equals(user.getRepeatPassword())){
@@ -142,7 +143,7 @@ public class DashboardController {
         mv.addObject("randomActivity", activities.get(index));
 
         return mv;
-    }
+    }*/
 
 
     public ArrayList<ActivityInCategory> initializeActivityInCategory(){

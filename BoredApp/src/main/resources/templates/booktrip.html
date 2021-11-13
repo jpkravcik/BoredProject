@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1">
     <title>Registration Success</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/booktrip.css" />
 </head>
-<body>
+   <div class = "topnav">
+    <img src="images/bored.png" class="logo">
+</div>
 
+<body>
+<div class="space"></div>  
+<div class = "test">
     <th:block th:each="Activity : ${generatedActivities}">
         
         <p th:text=" 'Activity :' +${Activity.name}"></p>
@@ -16,8 +21,9 @@
         <p th:text=" 'Cost: '+${Activity.cost}"></p>
         
     </th:block>
+</div>
 
-    <form th:action="@{/bookedtrip/{id} (id=${userId})}"  th:object="${bookingDto}" method="post" style="max-width: 600px; margin: 0 auto;">
+    <form th:action="@{/bookedtrip/{id} (id=${userId})}"  th:object="${bookingDto}" method="post" style="max-width: 600px; margin: 0 auto; border: 1px; padding: 5px; color: lightblue">
         <div>
             
                 <ul >
@@ -31,9 +37,11 @@
         </div>
 
         <div>
-            <button type="submit" class="btn- btn-primary">Save</button>
+            <button type="submit" class="button">Save</button>
         </div>
     </form>
+
+    <p><a th:href="@{/automatedtrip}"> refresh options</a></p>
 
 </body>
 </html>

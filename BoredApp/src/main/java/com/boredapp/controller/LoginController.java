@@ -15,9 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
-
+@SessionAttributes({"user"})
 @Controller
 public class LoginController {
 
@@ -29,7 +30,7 @@ public class LoginController {
     CityRepository cityRepository;
 
 
-/*
+
     @GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("newUser", new User());
@@ -65,12 +66,12 @@ public class LoginController {
             return "login";
         }
 		
- 
+        /*Iterable<City> cities=cityRepository.findAll();
+        model.addAttribute("cities", cities);*/
 
         
         
-		return "userhomepage";
+		return "redirect:/gohome";
 		
 	}
-    */
 }

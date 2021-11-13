@@ -22,6 +22,7 @@ public class HotelReservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	private Integer TripNo;
 	@Column(name="start_date")
 	private Date startDate;
 	@Column(name="end_date")

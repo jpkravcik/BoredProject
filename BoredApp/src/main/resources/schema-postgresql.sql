@@ -1,3 +1,5 @@
+drop table if exists activityid_userid;
+drop table if exists user_activity;
 drop table if exists activity_users;
 drop table if exists rating;
 drop table if exists booking;
@@ -9,13 +11,6 @@ DROP table if exists category;
 DROP table if exists Activity;
 DROP table if exists userdata;
 DROP table if exists city;
-DROP table if exists activityid_userid;
-
-create table activityid_userid(
-	id serial PRIMARY KEY,
-	activityid int,
-	userid int
-);
 
 create table city(
 	id serial PRIMARY KEY,
@@ -26,12 +21,12 @@ create table city(
 CREATE TABLE activity(
 	id serial PRIMARY KEY,
 	name VARCHAR(150),
-	description VARCHAR(150),
+	description VARCHAR(250),
 	city_id INT,
 	cost DECIMAL(10,3),
-	unique (name)
+	unique (name),
 	
-	
+	foreign key(city_id) references city(id) ON DELETE CASCADE
 );
 
 
@@ -45,6 +40,7 @@ create table userdata(
 	unique(email)
 
 );
+
 
 
 create table category(
@@ -78,6 +74,7 @@ create table review(
 
 
 
+
 create table hotel(
 	id serial PRIMARY KEY,
 	name VARCHAR(255),
@@ -101,13 +98,12 @@ create table hotel_reservation(
 
 
 create table booking(
+	id serial PRIMARY KEY,
 	user_email VARCHAR(255),
+	activity_id INT,
 	activity_name VARCHAR(255),
-	day DATE,
 	cost DECIMAL(10,3),
-	
-	primary key(user_email,activity_name),
-	foreign key(activity_name) references activity(name) ON DELETE CASCADE,
+	foreign key(activity_id) references activity(id) ON DELETE CASCADE,
 	foreign key(user_email) references userdata(email) ON DELETE CASCADE
 	
 	
@@ -127,6 +123,12 @@ create table rating(
 
 
 
-
+create table user_activity(
+	id serial PRIMARY KEY,
+	user_id INT,
+	activity_id INT,
+	foreign key(user_id) references userdata(id) ON DELETE CASCADE,
+	foreign key(activity_id) references activity(id) ON DELETE CASCADE
+);
 
 

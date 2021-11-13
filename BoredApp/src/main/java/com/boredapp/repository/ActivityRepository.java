@@ -6,9 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.boredapp.model.Activity;
-import com.boredapp.model.City;
 
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -27,5 +25,8 @@ public interface ActivityRepository extends CrudRepository<Activity, Integer> {
     @Transactional
     @Query(value="SELECT * from activity" ,nativeQuery=true)
 	List<Activity> findAll();
+
+
+    
 
 }

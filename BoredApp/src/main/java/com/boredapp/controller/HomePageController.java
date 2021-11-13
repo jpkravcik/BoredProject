@@ -1,33 +1,21 @@
 package com.boredapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import com.boredapp.model.*;
+import com.boredapp.service.*;
+import com.boredapp.repository.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import java.util.*;
 
 import com.boredapp.model.Activity;
-import com.boredapp.model.Incategory;
-import com.boredapp.model.User;
-import com.boredapp.repository.ActivityId_UserIdRepository;
-import com.boredapp.repository.ActivityRepository;
-import com.boredapp.repository.IncategoryRepository;
 
-import com.boredapp.service.UserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.boredapp.service.UserAlreadyExistException;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping("")
+@SessionAttributes({"user"})
+
 public class HomePageController {
     @Autowired
     UserService userService;
@@ -35,69 +23,71 @@ public class HomePageController {
     @Autowired
     ActivityRepository activityRepository;
 
+    
+
     @Autowired
     IncategoryRepository incategoryRepository;
 
     @Autowired
-    ActivityId_UserIdRepository activityId_userIdRepository;
-    
-    @GetMapping
-    public ModelAndView viewHomePage() {
-        ModelAndView mv = new ModelAndView("welcome");
-        mv.addObject("user", new User());
+    CategoryRepository categoryRepository;
 
-        System.out.println("Hello" + activityId_userIdRepository.findAll());
+    @Autowired
+    ActivityId_UserIdRepository activityId_userRepository;
 
-
-        return mv;
+    @GetMapping("")
+    public String viewHomePage() {
+        return "welcome";
     }
 
-    /*
-    @GetMapping("/userhomepage/cost/{value}")
-    public ModelAndView filterByCost(@PathVariable (name="value") Integer value){
-        ModelAndView mv = new ModelAndView("userhomepage");
-       ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
+    @GetMapping("/gohome")
+    public String viewUserHomePage(Model model) {
+      
+        /*User user = (User) model.asMap().get("user");
+        if(user==null){
+            user = new User();
+            user.setFirstName("Marija");
+            user.setId(100);
+        }*/
 
-    activities.removeIf(activity->(activity.getCost()>value));
-    System.out.println(activities);
-       mv.addObject("user", new User());
-       mv.addObject("activities", activities);
-        mv.addObject("value", value);
-       return mv;
+        ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
 
-    }
 
-    
-    @GetMapping("/userhomepage")
-    public ModelAndView viewMain() {
-        ModelAndView mv = new ModelAndView("userhomepage");
-        mv.addObject("user", new User());
-        mv.addObject("value", 1000);
-        ArrayList<Activity> activities = (ArrayList<Activity>) activityRepository.findAll();
-        mv.addObject("activities", activities);
+        model.addAttribute("activities", initializeActivityInCategory());
+        model.addAttribute("cost", 1000);
+        model.addAttribute("category", "ALL");
         int index = (int)(Math.random() * activities.size());
-        mv.addObject("randomActivity", activities.get(index));
-        return mv;
-    }
-    
+        model.addAttribute("randomActivity", activities.get(index));
 
-    @PostMapping("/userhomepage")
-    public ModelAndView processRegister(User user) {
-        ModelAndView mv = new ModelAndView("userhomepage");
-       if(user.getPassword().equals(user.getRepeatPassword())){
-        try {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String encodedPassword = passwordEncoder.encode(user.getPassword());
-            user.setPassword(encodedPassword);
-            userService.register(user);
-            mv.addObject("user", user);
-         } catch (UserAlreadyExistException e) {
-            return new ModelAndView("welcome");
-         }
-        }else{
-            return new ModelAndView("welcome");
-        }
-        return mv;
+        
+        return "userhomepage";
     }
-    */
+
+    public ArrayList<ActivityInCategory> initializeActivityInCategory(){
+
+        //Create activityInCategoryList
+        ArrayList<Category> cat = (ArrayList<Category>) categoryRepository.findAll();
+
+        ArrayList<ActivityInCategory> list = new ArrayList<ActivityInCategory>();
+        for(Category c: cat){
+            ArrayList<String> str = (ArrayList<String>)incategoryRepository.FindByCategory_name(c.getName());
+            
+            for(String s: str){
+                Activity a = activityRepository.findByName(s);
+                ActivityInCategory aInCat = new ActivityInCategory();
+                aInCat.setActivityId(a.getId());
+                aInCat.setCategory(c.getName());
+                aInCat.setCategoryId(c.getId());
+                aInCat.setDescription(a.getDescription());
+                aInCat.setCost(a.getCost());
+                aInCat.setName(a.getName());
+
+                list.add(aInCat);
+            }
+        }
+        return list;
+
+
+    }
+
+
 }

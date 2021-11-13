@@ -1,3 +1,5 @@
+drop table if exists activityid_userid;
+drop table if exists user_activity;
 drop table if exists rating;
 drop table if exists booking;
 drop table if exists hotel_reservation;
@@ -18,13 +20,13 @@ create table city(
 CREATE TABLE activity(
 	id long AUTO_INCREMENT,
 	name VARCHAR(150),
-	description VARCHAR(150),
+	description VARCHAR(250),
 	city_id BIGINT UNSIGNED,
 	cost DOUBLE,
 	primary key(id),
-	unique (name)
+	unique (name),
 	
-	
+	foreign key(city_id) references city(id) ON DELETE CASCADE
 );
 
 
@@ -102,13 +104,15 @@ create table hotel_reservation(
 
 
 create table booking(
+	id long AUTO_INCREMENT,
 	user_email VARCHAR(255),
+	activity_id BIGINT UNSIGNED,
 	activity_name VARCHAR(255),
 	day DATE,
 	cost DOUBLE,
 	
-	primary key(user_email,activity_name),
-	foreign key(activity_name) references activity(name) ON DELETE CASCADE,
+	primary key(id),
+	foreign key(activity_id) references activity(id) ON DELETE CASCADE,
 	foreign key(user_email) references userdata(email) ON DELETE CASCADE
 	
 	
@@ -130,5 +134,13 @@ create table rating(
 
 
 
+create table user_activity(
+	id long AUTO_INCREMENT,
+	user_id BIGINT UNSIGNED,
+	activity_id BIGINT UNSIGNED,
+	primary key(id),
+	foreign key(user_id) references userdata(id) ON DELETE CASCADE,
+	foreign key(activity_id) references activity(id) ON DELETE CASCADE
+);
 
 

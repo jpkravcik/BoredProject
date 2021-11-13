@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div class = "topnav">
+   
+</div>
+
+<div class = "space2">
+    </div>
+    <meta charset="ISO-8859-1">
+    <title>Registration Success</title>
+    
+</head>
+
+<div class = "space2">
+    </div>
+
+<body>
+        <a th:href="@{/gohome}">Go home</a>
+        <a th:href="@{/viewtickets}">View ticket</a>
+        <div>
+            <p>Filter by category</p>
+            <th:block th:each="category:${categories}">
+            <a th:href="@{/bycategory/{id} (id=${category.id})}" th:text="${category.name}"></a>
+          </th:block>
+          <a th:href="@{/select}" >ALL</a>
+        </div>
+       
+       <div>
+        <p>Filter by cost</p>
+        <th:block th:each="c:${costs}">
+          <a th:href="@{/bycost/{cost} (cost=${c})}" th:text="${c}"></a>
+        </th:block>
+       </div>
+      
+
+
+      <table id="customers">
+        <thead>
+            <tr>
+                <th> Click to book </th>
+                <th> Description </th>
+                <th>Cost</th>
+               </tr>
+        </thead>
+        <tbody>
+        
+            <tr th:each="activity : ${activities}">
+                <td><a th:href="@{/addbooking/{id} (id=${activity.id})}" th:text="${activity.name}"></a></td>
+                <td th:text="${activity.description}"></td>
+                <td th:text="${activity.cost}"></td>
+               
+            </tr>
+        </tbody>
+    </table>
+    
+    
+</body>
+</html>

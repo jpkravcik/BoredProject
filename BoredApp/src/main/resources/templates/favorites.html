@@ -26,18 +26,17 @@
     <thead>
       <tr>
         <th scope="col">Activity</th>
-        <th scope="col">Category</th>
+        
         <th scope="col">Cost</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="activity : ${user_favorites}">
+      <tr th:each="activity:${favorites}">
         <td th:text="${activity.name}"></td>
-        <td th:text="${activity.category}"></td>
-        <td th:text="${activity.cost}"></td>
+       <td th:text="${activity.cost}"></td>
         <td>
-          <form action="#" th:action="@{/favorites/{activityId} (activityId=${activity.activityId})}" th:object="${activity.activityId}" method="post">	
+          <form action="#" th:action="@{/favorites/{activityId} (activityId=${activity.id})}" th:object="${activity.id}" method="post">	
             <input type="hidden" name="name" value="value" /> 
           <input type="submit" class="btn btn-outline-primary float_right" value="x">
           </form>
@@ -47,3 +46,6 @@
   </table>
 </body>
 </html>
+
+
+

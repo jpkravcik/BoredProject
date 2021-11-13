@@ -10,11 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.boredapp.model.Activity;
+
+
 import com.boredapp.model.CategoryKey;
 import com.boredapp.model.Incategory;
 
 public interface IncategoryRepository extends CrudRepository<Incategory, CategoryKey> {
+	
 	
 	@Transactional
 	@Modifying

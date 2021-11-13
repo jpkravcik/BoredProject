@@ -6,12 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +22,7 @@ import lombok.ToString.Exclude;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name="activity")
 public class Activity {
 	@lombok.EqualsAndHashCode.Exclude
 	@Id
@@ -49,12 +49,34 @@ public class Activity {
 	
 	@lombok.EqualsAndHashCode.Exclude
 	@Exclude
-	@OneToMany(mappedBy="activity",cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="activity",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Booking> Booking=new ArrayList<>();
 	
-	@lombok.EqualsAndHashCode.Exclude
-	@ManyToMany(targetEntity = User.class,cascade = CascadeType.ALL )
-	private List<Activity> users;
+	@OneToMany(mappedBy="activity",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	List<UserActivity> userActivity=new ArrayList<>();
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Activity other = (Activity) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+	
+
+
+
+
 
 	/*@lombok.EqualsAndHashCode.Exclude
 	@ManyToOne(cascade=CascadeType.ALL)

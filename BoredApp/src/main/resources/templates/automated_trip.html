@@ -1,12 +1,15 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Brands</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="css/automated_trip.css">
 </head>
+<div class = "topnav">
+    <img src="images/bored.png" class="logo">
+</div>
+<div class="space"></div>
     <body>
         
         <form th:action="@{/automatedtrippost/{id} (id=${userId})}" th:object="${automatedTrip}" method="post" style="max-width: 600px; margin: 0 auto;">
@@ -14,6 +17,7 @@
                
                     
                     <div>
+                    <div class="custom-select">
                     <label class="col-form-label" >choose one city</label>
                     
                     </div>
@@ -24,8 +28,10 @@
                             <option th:text="${city.name}" th:value="${city.id}" />
                             </th:block>
                             
+                    
                         </select>
-
+                    </div>
+                        <div class="space2"></div>
                         <p> Choose the  type of activities you would like ...
                         </p>
                         <div>
@@ -41,10 +47,12 @@
 
                     </div>
                     <div>
-                        <button type="submit" class="btn- btn-primary">Save</button>
+                        <button type="submit" class="button">Save</button>
                     </div>
             </div>
         </form>
+
+        
     
     </body>
 </html>

@@ -1,14 +1,9 @@
 package com.boredapp.model;
 
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.*;
 
@@ -16,20 +11,67 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
-@IdClass(BookingKey.class)
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "activity_id"}) })
+//@IdClass(BookingKey.class)
 public class Booking {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+
+
 	@ManyToOne(targetEntity=User.class)
-    @JoinColumn(name="user_email", nullable=false)
+    @JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
-	@Id
+	//@Id
+
+
 	@ManyToOne(targetEntity=Activity.class)
-    @JoinColumn(name="activity_name", nullable=false)
+    @JoinColumn(name="activity_id", nullable=false)
 	private Activity activity;
 	
 	private Double cost;
+	
+	private String activityName;
+
+	
+
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Booking other = (Booking) obj;
+		if (activity == null) {
+			if (other.activity != null)
+				return false;
+		} else if (!activity.equals(other.activity))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+
+	
+	
+	/*@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+	private String userEmail;
+	private String activityName;
+	private Double cost;*/
+
+	
+
+
 	
 	/*@Column(name="day")
 	private Date date;*/

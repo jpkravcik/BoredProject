@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>App Review</title>
+
+</head>
+
+    <body>
+       
+        
+
+        <div>
+            leave a review and rating 
+        </div>
+        <form th:action="@{/saveappreview}" th:object="${appReview}" method="post">
+            <textarea th:field=*{review} placeholder="Leave your review" rows="8" cols="80">
+            </textarea>
+
+
+            <div>
+                <th:block th:each="star :${stars}">
+                    
+                    <input type="checkbox" th:text="${star}" th:value=${star}  th:field="*{rating}" >
+                </th:block>
+           
+            </div>
+                <p><input type="submit" value="Submit" />
+        </form>
+        
+        <ul> <!-- REPLACE THE LI ELEMENTS BELOW -->
+            <li th:each="review:${reviews}" th:text="${review}">
+
+            </li>
+          </ul>
+    </body>
+</html>
+
+
+
+

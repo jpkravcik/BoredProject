@@ -31,6 +31,8 @@
 </head>
     <body>
         <form th:action="@{/bookedtrip/{id} (id=${userId})}"  th:object="${bookingDto}" method="post" style="max-width: 600px; margin: 0 auto;">
+            <p>Select a date </p>
+            <input type="date" th:field="*{day}" class="form-control">
             <table id="customers">
                 <thead>
                     <tr>

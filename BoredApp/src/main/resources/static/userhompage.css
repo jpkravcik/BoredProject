@@ -49,7 +49,6 @@ nav a {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
-
 }
 
 nav a:hover {
@@ -72,4 +71,3 @@ nav a::before {
 nav a:hover::before {
   width: 100%;
 }
-

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>review</title>
+<link rel="stylesheet" href="/css/review1.css">
+</head>
+<div class = "topnav">
+    <img src="/images/bored.png" class="logo">
+</div>
+    <body>
+        <div class="space"></div>
+
+        <table >
+            <thead>
+                <tr>
+                    <th> Activity </th>
+                    <th>click to review activity </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            
+                <tr th:each="activity : ${activities}">
+                    <td th:text="${activity.name}"></td>
+                    <td><a th:href="@{/myreview/{id} (id=${activity.id})}">click the link</a></td>
+                   
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+        <div class="button">
+        <P><a th:href="@{/gohome}">Go to home page</a></P>
+    </div>
+</div>
+    </body>
+</head>
+</html>
