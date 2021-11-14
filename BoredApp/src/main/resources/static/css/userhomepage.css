@@ -9,15 +9,14 @@
     z-index: 1;
     top: 0;
     overflow-x: hidden;
-    padding-top:20px;
+    margin-top:50px;
   }
 
 .centered {
     position: absolute;
     top: 20%;
-    left: 65%;
+    left: 50%;
     padding: 30px;
-    width: 100%;
     float:right;
   }
 
@@ -28,6 +27,20 @@
 td a {
   display:block;
   width:100%;
+}
+
+.hash-list {
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+  text-align: -webkit-center;
+}
+
+.hash-list > li {
+  display: block;
+  float: left;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 

@@ -1,41 +1,104 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>App Review</title>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <html xmlns="xmlns=http://www.thymeleaf.org">
+
+    <base href="/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="css/userhomepage.css">
+
+
+
+    <title>App Review</title>
 </head>
 
-    <body>
-       
-        
+<body>
+    <div th:insert="navbar :: navbar"> </div>
 
-        <div>
-            leave a review and rating 
-        </div>
-        <form th:action="@{/saveappreview}" th:object="${appReview}" method="post">
-            <textarea th:field=*{review} placeholder="Leave your review" rows="8" cols="80">
-            </textarea>
+    <div class="mainContainer">
+        <div class="card text-center">
+            <div class="card-header">
 
-
-            <div>
-                <th:block th:each="star :${stars}">
-                    
-                    <input type="checkbox" th:text="${star}" th:value=${star}  th:field="*{rating}" >
-                </th:block>
-           
             </div>
-                <p><input type="submit" value="Submit" />
+            <div class="card-body">
+                <h5 th:text=" 'Hey ' + ${user.firstName} + '! ' + 'We would appreciate your feedback.'"
+                    class="card-title"></h5>
+                <p class="card-text">Let us know what you think</p>
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+        </div>
+
+
+        <form style="text-align: center; padding: 20px; background:aliceblue;" th:action="@{/saveappreview}" th:object="${appReview}" method="post">
+            <div class="form-group">
+                <textarea th:field=*{review} placeholder="Leave your review" rows="8" cols="80">
+            </textarea>
+            </div>
+            <div class="form-group">
+                <th:block th:each="star :${stars}">
+
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                        th:value=${star} th:field="*{rating}">
+                    <label class="form-check-label" for="flexRadioDefault1" th:text="${star}">
+                    </label>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        
-        <ul> <!-- REPLACE THE LI ELEMENTS BELOW -->
-            <li th:each="review:${reviews}" th:text="${review}">
+        <br />
 
-            </li>
-          </ul>
-    </body>
+
+        <div class="container">
+            <h2 class="text-center">Read Our Customer Reviews</h2>
+
+            <ul class="hash-list">
+                <li th:each="review:${reviews}" style="float:none; width:70%;">
+                    <div class="card" >
+                        <div class="card-body" style="text-align: left;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="/images/person.png"
+                                        class="img img-rounded img-fluid" />
+                                    <p class="text-secondary text-center" th:text="${review.rating}"></p>
+                                </div>
+                                <div class="col-md-10">
+                                    <p>
+                                    <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false"
+                                        th:text="${review.userName}"></h5>
+
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <p th:text="${review.review}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+
 </html>
-
-
-
-

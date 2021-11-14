@@ -1,26 +1,12 @@
 
-.topnav {
-  background-color: lightblue;
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: right;
-  color: black;
-  text-align: center;
-  padding: 20px 25px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
+/*
 .logo{
   width: 200px;
   height: 120px;
 }
 
 .button {
-  background-color: lightblue; /* Green */
+  background-color: lightblue; 
   border: none;
   color: black;
   padding: 15px 32px;
@@ -39,7 +25,7 @@ table {
   margin-right: auto;
 }
 
-/* Style table headers and table data */
+
 th, td {
   text-align: center;
   padding: 32px;
@@ -53,39 +39,40 @@ th:first-child, td:first-child {
   text-align: center;
 }
 
-/* Zebra-striped table rows */
+
 tr:nth-child(even) {
   background-color: #f2f2f2
 }
 
-/* Split the screen in half */
-.split {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
 
-/* Control the left side */
+
+
 .left {
   left: 0;
 }
 
-/* Control the right side */
 .right {
   right: 0;
   
 }
 
-/* If you want the content centered horizontally and vertically */
 .centered {
+  top: 45%;
   position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
+*/
+
+.hash-list {
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+}
+
+table{
+  float:left;
+  margin-top:0px;
+}
