@@ -28,6 +28,20 @@
   -->
   <div th:insert="navbar :: navbar"> </div>
 
+
+  <div class="card text-center">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+        <h5 th:text=" 'Hello ' + ${user.firstName} + '! ' + 'Welcome to Bored.'"
+            class="card-title"></h5>
+        <p class="card-text">Use our filters to help you narrow down your search</p>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
+
   <div class="mainContainer">
     <!--
     The main content starts here
@@ -38,7 +52,7 @@
     Activity List Start
   -->
 
-    <div class="split centered">
+    <div class="centered split left">
       <div class="card" style="width: 18rem;">
 
         <img src="/images/red_bored.png" class="card-img-top" alt="...">
@@ -53,17 +67,6 @@
 
 
 
-    <div class="split left">
-
-      <div class="jumbotron">
-        <h1 class="display-4">
-          <p th:text="'Hello, ' + ${user.firstName} + '!'" />
-        </h1>
-
-
-        <p class="lead">Let's find something to do</p>
-
-      </div>
 
       <!--
     Select Filters 
@@ -93,10 +96,10 @@
           th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=0, category=${category})}">Free</a>
         <a class="btn btn-outline-dark float_right" id="10"
           th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=10, category=${category})}">
-          <$10< /a>
+          <$10 </a>
             <a class="btn btn-outline-dark float_right" id="50"
               th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=50, category=${category})}">
-              <$50< /a>
+              <$50 </a>
                 <a class="btn btn-outline-dark float_right" id="1000"
                   th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=1000, category=${category})}">All</a>
 
@@ -107,7 +110,7 @@
 
 
 
-      <table id="activitiesTable" class="table table-striped table-dark split left">
+      <table id="activitiesTable"  class="table table-striped table-dark split left">
         <thead>
           <tr>
             <th scope="col">#</th>

@@ -13,11 +13,10 @@
   }
 
 .centered {
-    position: absolute;
-    top: 20%;
-    left: 50%;
     padding: 30px;
     float:right;
+    margin-right: auto;
+    text-align: -webkit-center;
   }
 
 .left{
@@ -44,6 +43,19 @@ td a {
 }
 
 
+li:nth-child(-n+2){
+  display: block;
+}
+
+
+.dataTables_wrapper{
+  width: 50%;
+  float: left;
+  clear: none;
+}
+
+
+  
 
   
   
