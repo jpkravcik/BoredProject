@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--<html xmlns:th="http://www.thymeleaf.org">-->
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <html xmlns="xmlns=http://www.thymeleaf.org">
 
@@ -25,11 +25,13 @@
 <!--<div class = "space2">
     </div>-->
 
-<body>
     <!--
     Navigation Bar 
   -->
   <div th:insert="navbar :: navbar">  </div>
+
+<body>
+    
 
         <!--<a th:href="@{/gohome}">Go home</a>
         <a th:href="@{/viewtickets}">View ticket</a>-->
@@ -48,7 +50,7 @@
         </th:block>
        </div>
       
-
+      <div class="space"></div>
 
       <table id="customers" class="table table-striped table-dark split left">
         <thead>

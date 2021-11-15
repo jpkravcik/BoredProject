@@ -60,6 +60,7 @@ tr:nth-child(even) {
 
 /* Split the screen in half */
 .split {
+  margin-top: 10%;
   height: 100%;
   width: 50%;
   position: fixed;
@@ -72,12 +73,17 @@ tr:nth-child(even) {
 /* Control the left side */
 .left {
   left: 0;
+  /*height: 90%;
+  width: 40%;
+  */
 }
 
 /* Control the right side */
 .right {
   right: 0;
-  
+  height: 80%;
+  width: 55%;
+  position: fixed;
 }
 
 /* If you want the content centered horizontally and vertically */
@@ -87,5 +93,17 @@ tr:nth-child(even) {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.centered-t {
+  position: absolute;
+  top: 10%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn {
+  margin-top: 10px;
 }
 
