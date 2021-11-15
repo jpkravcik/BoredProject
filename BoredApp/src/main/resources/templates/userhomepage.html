@@ -51,18 +51,7 @@
     Activity List Start
   -->
 
-    <div class="centered split left">
-      <div class="card" style="width: 25rem;">
 
-        <img src="/images/red_bored.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Try This!</h5>
-          <h6 th:text="${randomActivity.name}" />
-          <p th:text="${randomActivity.description}" class="card-text" />
-          <a class="btn btn-primary" th:href="@{/singleActivity/{activityId}  (activityId=${randomActivity.activityId}) }">More</a>
-        </div>
-      </div>
-    </div>
 
 
 
@@ -81,6 +70,10 @@
           th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='EDUCATION')}">EDUCATION</a>
         <a class="btn btn-outline-dark float_right" id="music"
           th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='MUSIC')}">MUSIC</a>
+          <a class="btn btn-outline-dark float_right" id="restaurants"
+          th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='RESTAURANTS')}">RESTAURANTS</a>
+          <a class="btn btn-outline-dark float_right" id="shopping"
+          th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='SHOPPING')}">SHOPPING</a>
         <a class="btn btn-outline-dark float_right" id="all"
           th:href="@{/userhomepage/cost/{cost}/category/{category} (cost=${cost},category='ALL')}">ALL</a>
 
@@ -105,6 +98,19 @@
       </div>
       <br>
       <br>
+
+      <div class="centered split left">
+        <div class="card" style="width: 25rem;">
+  
+          <img src="/images/red_bored.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Try This!</h5>
+            <h6 th:text="${randomActivity.name}" />
+            <p th:text="${randomActivity.description}" class="card-text" />
+            <a class="btn btn-primary" th:href="@{/singleActivity/{activityId}  (activityId=${randomActivity.activityId}) }">More</a>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -160,7 +166,6 @@
   <script th:inline="javascript">
     /*<![CDATA[*/
 
-
     var cost = /*[[${cost}]]*/ 0;
     var category = /*[[${category}]]*/ "ALL";
 
@@ -176,6 +181,12 @@
         break;
       case 'EDUCATION':
         $('#education').css('background', '#0c6efd');
+        break;
+      case 'RESTAURANTS':
+        $('#restaurants').css('background', '#0c6efd');
+        break;
+      case 'SHOPPING':
+        $('#shopping').css('background', '#0c6efd');
         break;
       case 'MUSIC':
         $('#music').css('background', '#0c6efd');
@@ -198,49 +209,9 @@
 
 
     }
-
     /*]]>*/
   </script>
 
-  <!--
-$('#costValue').on('change', function() {
-  var table, tr, td, i, txtValue;
-  table = document.getElementById("activitiesTable");
-  tr = table.getElementsByTagName("tr");
-
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      value = td.textContent || td.innerText;
-     
-
-
-if(this.value==51){
-  if (value > this.value) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-
-}else{
-  if (value < this.value) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-}
-
-
-
-    }
-  }
-});
-
-$('#categoryValue').on('change', function() {
-  alert( this.value );
-});
-
--->
 
 </body>
 

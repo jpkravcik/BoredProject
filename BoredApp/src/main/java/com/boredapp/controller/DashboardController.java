@@ -51,9 +51,10 @@ public class DashboardController {
        ArrayList<Activity> activities= (ArrayList<Activity>) activityRepository.findAll();
 
        int index = (int)(Math.random() * activities.size());
-    mv.addObject("randomActivity", activities.get(index));
+    
 
     ArrayList<ActivityInCategory> activityInCategories = initializeActivityInCategory();
+    mv.addObject("randomActivity", activityInCategories.get(index));
     activityInCategories.removeIf(activity->(activity.getCost()>cost));
     if(!category.equals("ALL") && !activityInCategories.isEmpty()){
         activityInCategories.removeIf(activity->(!activity.getCategory().equals(category)));
