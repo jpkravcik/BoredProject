@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.*;
 
 @RequestMapping("userhomepage")
-@SessionAttributes({"user", "category", "cost"})
+@SessionAttributes({"user", "category", "cost", "activities"})
 @Controller
 public class DashboardController {
     
@@ -70,28 +70,7 @@ public class DashboardController {
 
 
     
-    /*@GetMapping
-    public ModelAndView viewMain(Model model) {
-        ModelAndView mv = new ModelAndView("userhomepage");
-        User user = (User) model.asMap().get("user");
-        if(user==null){
-            user = new User();
-            user.setFirstName("Marija");
-            user.setId(100);
-        }
-
-        mv.addObject("cost", 1000);
-        mv.addObject("category", "ALL");
-        mv.addObject("user", user);
-        mv.addObject("value", 1000);
-        ArrayList<Activity> activities = (ArrayList<Activity>) activityRepository.findAll();
-
-        mv.addObject("activities", initializeActivityInCategory());
-
-        int index = (int)(Math.random() * activities.size());
-        mv.addObject("randomActivity", activities.get(index));
-        return mv;
-    }*/
+ 
 
     @PostMapping("/{activityId}")
     public String addActivity(@PathVariable (name="activityId") Integer activityId, Model model){

@@ -14,7 +14,7 @@ import com.boredapp.model.Activity;
 
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"user", "activities"})
 
 public class HomePageController {
     @Autowired
@@ -23,7 +23,6 @@ public class HomePageController {
     @Autowired
     ActivityRepository activityRepository;
 
-    
 
     @Autowired
     IncategoryRepository incategoryRepository;
@@ -42,21 +41,15 @@ public class HomePageController {
     @GetMapping("/gohome")
     public String viewUserHomePage(Model model) {
       
-        /*User user = (User) model.asMap().get("user");
-        if(user==null){
-            user = new User();
-            user.setFirstName("Marija");
-            user.setId(100);
-        }*/
 
         ArrayList<Activity> activities=(ArrayList<Activity>) activityRepository.findAll();
+        ArrayList<ActivityInCategory> catact = initializeActivityInCategory();
 
-
-        model.addAttribute("activities", initializeActivityInCategory());
+        model.addAttribute("activities", catact);
         model.addAttribute("cost", 1000);
         model.addAttribute("category", "ALL");
-        int index = (int)(Math.random() * activities.size());
-        model.addAttribute("randomActivity", activities.get(index));
+        int index = (int)(Math.random() * catact.size());
+        model.addAttribute("randomActivity", catact.get(index));
 
         
         return "userhomepage";

@@ -18,9 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="css/userhomepage.css">
 
+	<title>Activity</title>
 
-	<title>Trip Planning</title>
-	<link rel="stylesheet" type="text/css" href="css/trip.css">
 </head>
 
 
@@ -38,27 +37,32 @@
 
 			</div>
 			<div class="card-body">
-				<h5 th:text=" ${user.firstName} + ', ' + 'let us begin.'" class="card-title"></h5>
-				<p class="card-text">Pick between customizing your trip or having us do the legwork for you!</p>
+				<h5 th:text=" 'Here are the details for activity '+ ${activity.name}" class="card-title"></h5>
+				<p class="card-text">Add it to your favorties or find another one!</p>
 			</div>
 			<div class="card-footer text-muted">
 			</div>
 		</div>
 
+        <div style="text-align: center;">
+            <div id="activity" class="card" style="width: 30rem;">
+      
+              <img src="/images/red_bored.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title" th:text="${activity.name}"></h5>
+                <h6 th:text="${activity.description}" />
+                <p th:text="'$'+ ${activity.cost}" class="card-text" />
+                <p th:text=" ${activity.category}" class="card-text" />
+                <form action="#" th:action="@{/userhomepage/{activityId} (activityId=${activity.activityId})}"
+                th:object="${activity.activityId}" method="post">
+                <input type="hidden" name="name" value="value" />
+                <input type="submit" class="btn btn-outline-primary float_right" value="Add To Favorites">
+              </form>
+              </div>
+            </div>
+          </div>
 
-		<div class="trip">
-			<div class="btn btn-dark">
-				<a th:href="@{/select}">Plan your trip</a>
-			</div>
-
-			<br /> <br />
-			<div class="btn btn-dark">
-				<a th:href="@{/automatedtrip}">Let us plan it for you</a>
-			</div>
-
-
-
-		</div>
+		
 	</div>
 </body>
 

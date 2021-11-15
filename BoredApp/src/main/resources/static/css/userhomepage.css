@@ -54,7 +54,10 @@ li:nth-child(-n+2){
   clear: none;
 }
 
-
+#activity{
+  margin-left: auto;
+  margin-right: auto;
+}
   
 
   
