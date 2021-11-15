@@ -33,11 +33,7 @@ public class ReviewController {
 
     @GetMapping("/review")
     public String review(Model model){
-        
-        
-
         return "review";
-        
     }
 
     @GetMapping("/mybooking")
@@ -57,12 +53,8 @@ public class ReviewController {
 
     @GetMapping("/allactivities")
     public String reviewActivity(Model model){
-      
-
-        
+    
         List<Activity> activities=activityRepository.findAll();
-
-
         model.addAttribute("activities", activities);
 
         return "review1";
@@ -96,9 +88,6 @@ public class ReviewController {
 
         model.addAttribute("stars", stars);
 
-
-        
-        
         return "leavereview";
         
     }
@@ -149,9 +138,7 @@ public class ReviewController {
         User user =(User)model.asMap().get("user");
         appReview.setUserEmail(user.getEmail());
         appReview.setUserName(user.getFirstName()+" "+user.getLastName());
-
         appReviewRepository.save(appReview);
-
 		return "redirect:/appreview";
 
     }
