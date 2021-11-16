@@ -35,7 +35,7 @@ public class HomePageController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "welcome";
+        return "redirect:/login";
     }
 
     @GetMapping("/gohome")

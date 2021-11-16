@@ -21,4 +21,7 @@ public interface BookingRepository extends CrudRepository<Booking, BookingKey> {
 	@Query(value="SELECT * from booking  WHERE user_id=:userid" ,nativeQuery=true)
     List<Booking> getBookings(@Param("userid")Integer id);
 
+    @Transactional
+    void deleteById(Integer id);
+
 }

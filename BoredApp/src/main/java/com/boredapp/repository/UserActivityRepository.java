@@ -21,6 +21,9 @@ public interface UserActivityRepository extends CrudRepository<UserActivity, Int
     @Transactional
     void deleteByActivity(Activity activity);
 
+    @Transactional
+    UserActivity findByActivity(Activity activity); 
+
    
 
 }

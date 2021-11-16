@@ -8,6 +8,8 @@ drop table if exists hotel;
 DROP table if exists review;
 DROP table if exists incategory;
 DROP table if exists category;
+DROP table if exists users_authority;
+DROP table if exists  authority;
 DROP table if exists Activity;
 DROP table if exists userdata;
 DROP table if exists city;

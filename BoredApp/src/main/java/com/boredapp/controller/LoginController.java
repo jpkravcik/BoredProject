@@ -4,6 +4,7 @@ package com.boredapp.controller;
 
 import com.boredapp.service.UserService;
 
+import javax.servlet.http.HttpSession;
 
 import com.boredapp.model.User;
 import com.boredapp.repository.CityRepository;
@@ -74,4 +75,14 @@ public class LoginController {
 		return "redirect:/gohome";
 		
 	}
+
+    @GetMapping("logout")
+    public String logOut(Model model,HttpSession session) {
+        
+        session.invalidate();
+        return "redirect:/";
+
+    }
+
+
 }

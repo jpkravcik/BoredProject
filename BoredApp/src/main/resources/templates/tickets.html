@@ -29,7 +29,7 @@
                 <tr>
                     <th> activity </th>
                     <th>Cost</th>
-                    
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +37,8 @@
                 <tr th:each="booking : ${bookings}">
                     <td th:text="${booking.activity.name}"></td>
                     <td th:text="${booking.activity.cost}"></td>
+                    <td><a th:href="@{/deletebooking/{id} (id=${booking.id})}">Delete booking</a></td>
+                </tr>
                 </tr>
             </tbody>
         </table>

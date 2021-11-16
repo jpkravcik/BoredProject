@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.boredapp.model.*;
 import com.boredapp.repository.*;
@@ -36,6 +37,15 @@ public class TicketController {
 
 
         return "tickets";
+    }
+
+
+    @GetMapping("/deletebooking/{id}")
+    public String deleteTicket(Model model,@PathVariable(name="id") Integer id){
+
+        bookingRepository.deleteById(id);
+        return "redirect:/viewtickets";
+
     }
     
 }

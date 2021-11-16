@@ -13,13 +13,14 @@ import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 
 import com.boredapp.model.*;
 import com.boredapp.repository.*;
 import com.boredapp.service.IncategoryService;
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"user","originalActivity"})
 public class CreateActivityController {
     @Autowired
     ActivityRepository activityRepository;
@@ -96,6 +97,49 @@ public class CreateActivityController {
         userActivityRepository.deleteByActivity(activity);
         activityRepository.delete(activity);
 		return "redirect:/createactivity";
+
+    }
+
+    @GetMapping("/editactivity/{id}")
+    public String editActivity(Model model, @PathVariable(name="id") Integer id){
+
+        Activity activity=activityRepository.findById(id).get();
+        Activity originalActivity=activityRepository.findById(id).get();
+        model.addAttribute("originalActivity", originalActivity);
+
+        model.addAttribute("activity", activity);
+
+        List<Category> incat=new ArrayList<>();
+
+        model.addAttribute("incat", incat);
+
+        List<Category> listCategories=(ArrayList<Category>)categoryRepository.findAll();
+        model.addAttribute("listcategories",listCategories);
+		return "editactivity";
+
+    }
+
+
+    @PostMapping("/updateactivity")
+    public String updateActivity(Model model ,@ModelAttribute(name="activity") Activity activity,HttpServletRequest request){
+        User user =(User)model.asMap().get("user");
+        String[] detailName=request.getParameterValues("categories");
+
+        Activity originalActivity =(Activity)model.asMap().get("originalActivity");
+        userActivityRepository.deleteByActivity(originalActivity);
+        activityRepository.save(activity);
+
+
+        UserActivity userActivity=new UserActivity();
+        userActivity.setUser(user);
+        userActivity.setActivity(activity);
+        
+
+
+        userActivityRepository.save(userActivity);
+        
+
+        return "redirect:/createactivity";
 
     }
 

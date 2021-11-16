@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"user","hotel"})
 public class HotelController {
 
     @Autowired
@@ -70,15 +70,49 @@ public class HotelController {
     public  String hotelChoice(Model model,@ModelAttribute("hotelReservation") HotelReservation hotelReservation){
         User user =(User)model.asMap().get("user");
         
-        int tripNo=tripService.generateNumber(user)-1;
-        hotelReservation.setTripNo(tripNo);
+        Hotel hotel =(Hotel)model.asMap().get("hotel");
+        hotelReservation.setHotel(hotel);
         hotelReservation.setUser(user);
 
+        
         hotelReservationRepository.save(hotelReservation);
 
-        return "redirect:/gohome";
+
+        return "redirect:/managehotel";
 
     }
+
+
+
+    @GetMapping("/managehotel")
+    public  String manageHotel(Model model){
+        User user =(User)model.asMap().get("user");
+
+        List<HotelReservation> reservations=hotelReservationRepository.findByUser(user);
+
+        model.addAttribute("reservations", reservations);
+
+        return "managehotel";
+
+
+    }
+
+
+    @GetMapping("/deletehotel/{id}")
+    public  String deleteHotel(Model model,@PathVariable(name="id") Integer id){
+        
+
+        hotelReservationRepository.deleteById(id);
+
+        
+        
+        
+
+        return "redirect:/managehotel";
+
+
+    }
+
 
 
     

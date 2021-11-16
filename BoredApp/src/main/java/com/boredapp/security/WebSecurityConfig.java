@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.and().formLogin().loginPage("/login").defaultSuccessUrl("/user").failureUrl("/failedLogin");*/
 		http.authorizeRequests()
 		.antMatchers("/","/login","/registration").permitAll()
-		.and().formLogin().loginPage("/login").defaultSuccessUrl("/user").failureUrl("/failedLogin");
+		.and().formLogin().loginPage("/").defaultSuccessUrl("/user").failureUrl("/failedLogin");
 
 		/*http.authorizeRequests().antMatchers("transport").authenticated()
 		.anyRequest().permitAll().and().formLogin().usernameParameter("email").permitAll()
